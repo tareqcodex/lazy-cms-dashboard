@@ -11,6 +11,30 @@ use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
+    public function builder($id)
+    {
+        $post = Post::findOrFail($id);
+        return view('cms-dashboard::admin.builder.index', compact('post'));
+    }
+
+    public function saveBuilder(Request $request, $id)
+    {
+        $post = Post::findOrFail($id);
+        $post->update([
+            'content' => json_encode($request->input('layout')),
+            'editor_type' => 'builder'
+        ]);
+
+        return response()->json(['success' => true, 'message' => 'Page layout saved successfully.']);
+    }
+
+    public function previewBuilder($id)
+    {
+        $post = Post::findOrFail($id);
+        // This would typically return a front-end view that renders the builder JSON
+        return view('cms-dashboard::admin.builder.preview', compact('post'));
+    }
+
     public function __construct()
     {
         // We could use middleware, but for simplicity in this controller:

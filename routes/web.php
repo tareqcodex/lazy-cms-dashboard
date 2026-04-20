@@ -15,6 +15,9 @@ Route::prefix('admin')->name('admin.')->middleware(['web'])->group(function () {
     Route::post('posts/{post}/restore', [PostController::class, 'restore'])->name('posts.restore')->withTrashed();
     Route::delete('posts/{post}/force-delete', [PostController::class, 'forceDelete'])->name('posts.force-delete')->withTrashed();
     Route::resource('posts', PostController::class);
+    Route::get('builder/{id}', [PostController::class, 'builder'])->name('builder');
+    Route::post('builder/{id}/save', [PostController::class, 'saveBuilder'])->name('builder.save');
+    Route::get('builder/{id}/preview', [PostController::class, 'previewBuilder'])->name('builder.preview');
 
     Route::post('pages/bulk', [\Acme\CmsDashboard\Http\Controllers\Admin\PageController::class, 'bulk'])->name('pages.bulk');
     Route::post('pages/{page}/restore', [\Acme\CmsDashboard\Http\Controllers\Admin\PageController::class, 'restore'])->name('pages.restore')->withTrashed();
