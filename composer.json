@@ -1,5 +1,5 @@
 {
-    "name": "tareqcodex/lazy-cms",
+    "name": "tareqcodex/lazy-cms-dashboard",
     "description": "A reusable WordPress-like admin dashboard package.",
     "type": "library",
     "require": {
